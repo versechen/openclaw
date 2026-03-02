@@ -1,5 +1,5 @@
 ---
-summary: "Feishu bot overview, features, and configuration"
+summary: Feishu bot overview, features, and configuration
 read_when:
   - You want to connect a Feishu/Lark bot
   - You are configuring the Feishu channel
@@ -10,7 +10,7 @@ title: Feishu
 
 Feishu (Lark) is a team chat platform used by companies for messaging and collaboration. This plugin connects OpenClaw to a Feishu/Lark bot using the platform’s WebSocket event subscription so messages can be received without exposing a public webhook URL.
 
----
+***
 
 ## Plugin required
 
@@ -26,7 +26,7 @@ Local checkout (when running from a git repo):
 openclaw plugins install ./extensions/feishu
 ```
 
----
+***
 
 ## Quickstart
 
@@ -48,8 +48,8 @@ The wizard guides you through:
 
 ✅ **After configuration**, check gateway status:
 
-- `openclaw gateway status`
-- `openclaw logs --follow`
+* `openclaw gateway status`
+* `openclaw logs --follow`
 
 ### Method 2: CLI setup
 
@@ -63,11 +63,11 @@ Choose **Feishu**, then enter the App ID and App Secret.
 
 ✅ **After configuration**, manage the gateway:
 
-- `openclaw gateway status`
-- `openclaw gateway restart`
-- `openclaw logs --follow`
+* `openclaw gateway status`
+* `openclaw gateway restart`
+* `openclaw logs --follow`
 
----
+***
 
 ## Step 1: Create a Feishu app
 
@@ -83,18 +83,18 @@ Lark (global) tenants should use [https://open.larksuite.com/app](https://open.l
 2. Fill in the app name + description
 3. Choose an app icon
 
-![Create enterprise app](../images/feishu-step2-create-app.png)
+![Create enterprise app](../.gitbook/assets/feishu-step2-create-app.png)
 
 ### 3. Copy credentials
 
 From **Credentials & Basic Info**, copy:
 
-- **App ID** (format: `cli_xxx`)
-- **App Secret**
+* **App ID** (format: `cli_xxx`)
+* **App Secret**
 
 ❗ **Important:** keep the App Secret private.
 
-![Get credentials](../images/feishu-step3-credentials.png)
+![Get credentials](../.gitbook/assets/feishu-step3-credentials.png)
 
 ### 4. Configure permissions
 
@@ -128,7 +128,7 @@ On **Permissions**, click **Batch import** and paste:
 }
 ```
 
-![Configure permissions](../images/feishu-step4-permissions.png)
+![Configure permissions](../.gitbook/assets/feishu-step4-permissions.png)
 
 ### 5. Enable bot capability
 
@@ -137,7 +137,7 @@ In **App Capability** > **Bot**:
 1. Enable bot capability
 2. Set the bot name
 
-![Enable bot capability](../images/feishu-step5-bot-capability.png)
+![Enable bot capability](../.gitbook/assets/feishu-step5-bot-capability.png)
 
 ### 6. Configure event subscription
 
@@ -153,7 +153,7 @@ In **Event Subscription**:
 
 ⚠️ If the gateway is not running, the long-connection setup may fail to save.
 
-![Configure event subscription](../images/feishu-step6-event-subscription.png)
+![Configure event subscription](../.gitbook/assets/feishu-step6-event-subscription.png)
 
 ### 7. Publish the app
 
@@ -161,7 +161,7 @@ In **Event Subscription**:
 2. Submit for review and publish
 3. Wait for admin approval (enterprise apps usually auto-approve)
 
----
+***
 
 ## Step 2: Configure OpenClaw
 
@@ -228,8 +228,8 @@ If your tenant is on Lark (international), set the domain to `lark` (or a full d
 
 You can reduce Feishu API usage with two optional flags:
 
-- `typingIndicator` (default `true`): when `false`, skip typing reaction calls.
-- `resolveSenderNames` (default `true`): when `false`, skip sender profile lookup calls.
+* `typingIndicator` (default `true`): when `false`, skip typing reaction calls.
+* `resolveSenderNames` (default `true`): when `false`, skip sender profile lookup calls.
 
 Set them at top level or per account:
 
@@ -252,7 +252,7 @@ Set them at top level or per account:
 }
 ```
 
----
+***
 
 ## Step 3: Start + test
 
@@ -276,45 +276,44 @@ openclaw pairing approve feishu <CODE>
 
 After approval, you can chat normally.
 
----
+***
 
 ## Overview
 
-- **Feishu bot channel**: Feishu bot managed by the gateway
-- **Deterministic routing**: replies always return to Feishu
-- **Session isolation**: DMs share a main session; groups are isolated
-- **WebSocket connection**: long connection via Feishu SDK, no public URL needed
+* **Feishu bot channel**: Feishu bot managed by the gateway
+* **Deterministic routing**: replies always return to Feishu
+* **Session isolation**: DMs share a main session; groups are isolated
+* **WebSocket connection**: long connection via Feishu SDK, no public URL needed
 
----
+***
 
 ## Access control
 
 ### Direct messages
 
-- **Default**: `dmPolicy: "pairing"` (unknown users get a pairing code)
-- **Approve pairing**:
+* **Default**: `dmPolicy: "pairing"` (unknown users get a pairing code)
+*   **Approve pairing**:
 
-  ```bash
-  openclaw pairing list feishu
-  openclaw pairing approve feishu <CODE>
-  ```
-
-- **Allowlist mode**: set `channels.feishu.allowFrom` with allowed Open IDs
+    ```bash
+    openclaw pairing list feishu
+    openclaw pairing approve feishu <CODE>
+    ```
+* **Allowlist mode**: set `channels.feishu.allowFrom` with allowed Open IDs
 
 ### Group chats
 
 **1. Group policy** (`channels.feishu.groupPolicy`):
 
-- `"open"` = allow everyone in groups (default)
-- `"allowlist"` = only allow `groupAllowFrom`
-- `"disabled"` = disable group messages
+* `"open"` = allow everyone in groups (default)
+* `"allowlist"` = only allow `groupAllowFrom`
+* `"disabled"` = disable group messages
 
 **2. Mention requirement** (`channels.feishu.groups.<chat_id>.requireMention`):
 
-- `true` = require @mention (default)
-- `false` = respond without mentions
+* `true` = require @mention (default)
+* `false` = respond without mentions
 
----
+***
 
 ## Group configuration examples
 
@@ -361,7 +360,7 @@ After approval, you can chat normally.
 
 ### Allow specific users to run control commands in a group (e.g. /reset, /new)
 
-In addition to allowing the group itself, control commands are gated by the **sender** open_id.
+In addition to allowing the group itself, control commands are gated by the **sender** open\_id.
 
 ```json5
 {
@@ -380,11 +379,11 @@ In addition to allowing the group itself, control commands are gated by the **se
 }
 ```
 
----
+***
 
 ## Get group/user IDs
 
-### Group IDs (chat_id)
+### Group IDs (chat\_id)
 
 Group IDs look like `oc_xxx`.
 
@@ -397,7 +396,7 @@ Group IDs look like `oc_xxx`.
 
 Use the Feishu API debugger to list group chats.
 
-### User IDs (open_id)
+### User IDs (open\_id)
 
 User IDs look like `ou_xxx`.
 
@@ -414,7 +413,7 @@ Check pairing requests for user Open IDs:
 openclaw pairing list feishu
 ```
 
----
+***
 
 ## Common commands
 
@@ -436,7 +435,7 @@ openclaw pairing list feishu
 | `openclaw gateway restart` | Restart gateway service       |
 | `openclaw logs --follow`   | Tail gateway logs             |
 
----
+***
 
 ## Troubleshooting
 
@@ -468,7 +467,7 @@ openclaw pairing list feishu
 2. Ensure the app is published
 3. Check logs for detailed errors
 
----
+***
 
 ## Advanced configuration
 
@@ -501,8 +500,8 @@ openclaw pairing list feishu
 
 ### Message limits
 
-- `textChunkLimit`: outbound text chunk size (default: 2000 chars)
-- `mediaMaxMb`: media upload/download limit (default: 30MB)
+* `textChunkLimit`: outbound text chunk size (default: 2000 chars)
+* `mediaMaxMb`: media upload/download limit (default: 30MB)
 
 ### Streaming
 
@@ -570,17 +569,17 @@ Use `bindings` to route Feishu DMs or groups to different agents.
 
 Routing fields:
 
-- `match.channel`: `"feishu"`
-- `match.peer.kind`: `"direct"` or `"group"`
-- `match.peer.id`: user Open ID (`ou_xxx`) or group ID (`oc_xxx`)
+* `match.channel`: `"feishu"`
+* `match.peer.kind`: `"direct"` or `"group"`
+* `match.peer.id`: user Open ID (`ou_xxx`) or group ID (`oc_xxx`)
 
-See [Get group/user IDs](#get-groupuser-ids) for lookup tips.
+See [Get group/user IDs](feishu.md#get-groupuser-ids) for lookup tips.
 
----
+***
 
 ## Configuration reference
 
-Full configuration: [Gateway configuration](/gateway/configuration)
+Full configuration: [Gateway configuration](../../gateway/configuration/)
 
 Key options:
 
@@ -598,7 +597,7 @@ Key options:
 | `channels.feishu.accounts.<id>.appSecret`         | App Secret                              | -                |
 | `channels.feishu.accounts.<id>.domain`            | Per-account API domain override         | `feishu`         |
 | `channels.feishu.dmPolicy`                        | DM policy                               | `pairing`        |
-| `channels.feishu.allowFrom`                       | DM allowlist (open_id list)             | -                |
+| `channels.feishu.allowFrom`                       | DM allowlist (open\_id list)            | -                |
 | `channels.feishu.groupPolicy`                     | Group policy                            | `open`           |
 | `channels.feishu.groupAllowFrom`                  | Group allowlist                         | -                |
 | `channels.feishu.groups.<chat_id>.requireMention` | Require @mention                        | `true`           |
@@ -608,7 +607,7 @@ Key options:
 | `channels.feishu.streaming`                       | Enable streaming card output            | `true`           |
 | `channels.feishu.blockStreaming`                  | Enable block streaming                  | `true`           |
 
----
+***
 
 ## dmPolicy reference
 
@@ -619,24 +618,24 @@ Key options:
 | `"open"`      | Allow all users (requires `"*"` in allowFrom)                   |
 | `"disabled"`  | Disable DMs                                                     |
 
----
+***
 
 ## Supported message types
 
 ### Receive
 
-- ✅ Text
-- ✅ Rich text (post)
-- ✅ Images
-- ✅ Files
-- ✅ Audio
-- ✅ Video
-- ✅ Stickers
+* ✅ Text
+* ✅ Rich text (post)
+* ✅ Images
+* ✅ Files
+* ✅ Audio
+* ✅ Video
+* ✅ Stickers
 
 ### Send
 
-- ✅ Text
-- ✅ Images
-- ✅ Files
-- ✅ Audio
-- ⚠️ Rich text (partial support)
+* ✅ Text
+* ✅ Images
+* ✅ Files
+* ✅ Audio
+* ⚠️ Rich text (partial support)
