@@ -39,7 +39,7 @@ pnpm setup
     }
 ```
 
-```
+```python
   "channels": {
     "telegram": {
       "enabled": true,
