@@ -38,3 +38,15 @@ pnpm setup
       }
     }
 ```
+
+```
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "8778729632:AAFUuG2632ttYd7qYY5lmjvZbZhMlYi3TGg",
+      "allowFrom": ["5829175087"],
+      "dmPolicy": "pairing",
+      "groupPolicy": "disabled"
+    }
+  }
+```
